@@ -1,0 +1,25 @@
+version: '3'
+services:
+  ogmongo:
+    container_name: og-mongo
+    image: mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/configdb
+      - mongo_data:/data/mysql
+    ports:
+      - 27020:27017
+  test-ogmongo:
+    container_name: og-mongo-test
+    image: mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/configdb
+      - mongo_data:/data/mysql
+    ports:
+      - 27021:27017
+volumes:
+  api_data: {}
+  mongo_data:
+    name: global_mongo
+  mysql_data: {}
